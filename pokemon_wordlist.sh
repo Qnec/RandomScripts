@@ -1,0 +1,2 @@
+#literally every pokemon name wordlist I could find was incomplete so I spent a few hours learning xpath to write this abomination
+curl https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_National_Pok%C3%A9dex_number | tidy -iq -asxml 2>/dev/null | xpath -e "//tr/td[1][@rowspan]/following-sibling::td[1]/a/@title" 2>/dev/null | sed 's/ title="//' | sed 's/"//' | sort > pokemon_names.txt
